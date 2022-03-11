@@ -58,7 +58,6 @@ def end_game(game):
 
 def add_base(game):
     for a in range(1,int(len(game)/2)):
-        print(a)
         if game[n-1][ball_cord[1]+a] == '_':
             pass
         else:
@@ -159,7 +158,6 @@ if __name__ == '__main__':
                         if isinstance(game[n-1-i][ball_cord[1]-j+a], int):
                             game = down_trav(game,n-1-i,ball_cord[1]-j+a)
                             #APPENDING NEW BALL CO-ORDINATES
-                            print(temp_ball,ball)
                             if ball_cord[1]-j+a != ball_cord[1]:
                                 if game[n-1][ball_cord[1]-j+a] == '_':
                                     if temp_ball == ball:
