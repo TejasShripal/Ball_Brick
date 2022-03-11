@@ -50,9 +50,9 @@ def ds(x,y,game):
 
 
 def end_game(game):
-    for i in game:
-        for j in i:
-            if isinstance(j, int):
+    for i in range(1,n-1):
+        for j in range(1,n-1):
+            if isinstance(game[i][j], int):
                 return False
     return True
 
@@ -183,8 +183,13 @@ if __name__ == '__main__':
                             break
                         #WALL HIT POST WALL HIT CHECK -> REPLACE BALL CO-ORDINATE AND DECREMENT BALL COUNT
                         elif game[n-1-i][ball_cord[1]-j+a] == 'W':
-                            ball-=1
+                            if temp_ball == ball and '_' in game[n-1]:
+                                game[ball_cord[0]][ball_cord[1]] = '_'
+                            else:
+                                game[ball_cord[0]][ball_cord[1]] = 'G'
                             ball_cord[1] = by
+                            game[n-1][ball_cord[1]] = 'o'
+                            ball-=1
                         elif game[n-1-i][ball_cord[1]-j+a] == 'B':
                             game = add_base(game)
                             game[n-1-i][ball_cord[1]-j+a] = ' '
@@ -270,8 +275,13 @@ if __name__ == '__main__':
                                     ball-=1   
                             break
                         elif game[n-1-i][ball_cord[1]+j-a] == 'W':
-                            ball-=1
+                            if temp_ball == ball and '_' in game[n-1]:
+                                game[ball_cord[0]][ball_cord[1]] = '_'
+                            else:
+                                game[ball_cord[0]][ball_cord[1]] = 'G'
                             ball_cord[1] = by
+                            game[n-1][ball_cord[1]] = 'o'
+                            ball-=1
                         elif game[n-1-i][ball_cord[1]+j-a] == 'B':
                             game = add_base(game)
                             game[n-1-i][ball_cord[1]+j-a] = ' '
