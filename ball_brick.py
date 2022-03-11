@@ -12,8 +12,9 @@ def make_game(n):
 
 #updates the table
 def get_data(n, table):
-    y_n = 'y'
+    y_n = ''
     while(y_n != 'n'):
+        y_n = ''
         try:
             x,y,s = input("Enter the brick's position and the brick type: ").split()
             if s == 'S' or s == 'E' or s == 'B':
@@ -24,7 +25,10 @@ def get_data(n, table):
                 print("Enter a valid brick type.")
         except:
             print("Enter a valid position.")
-        y_n = input("Do you want to continue(Y or N)? ").lower()
+        while(y_n != 'y' and y_n != 'n'):
+            y_n = input("Do you want to continue(y or N)? ")
+        if y_n == 'n':
+            break
     ball = int(input("Enter ball count: "))
     game[n-1][int(n/2)] = 'o'
     return game, ball
@@ -74,7 +78,6 @@ if __name__ == '__main__':
     win = 0
     game = make_game(n)
     winref = make_game(n)
-    print(winref)
     game, ball = get_data(n, game)
     by = int(n/2)
     bx = n-1
@@ -140,7 +143,7 @@ if __name__ == '__main__':
                                         game[n-1][ball_cord[1]] = 'o'
                                         temp_ball = ball
                                 else:
-                                    if temp_ball == ball:
+                                    if temp_ball == ball and '_' in game[n-1]:
                                         game[ball_cord[0]][ball_cord[1]] = '_'
                                     else:
                                         game[ball_cord[0]][ball_cord[1]] = 'G'
@@ -212,7 +215,6 @@ if __name__ == '__main__':
         #____________________________RIGHT DIAGONAL TRAVERSAL_________________________
         elif direction == 'RD':
             for i,j in zip(range(n),range(n)):
-                print(n-1-i,ball_cord[1]+j,game[n-1-i][ball_cord[1]+j])
                 if isinstance(game[n-1-i][ball_cord[1]+j], int):
                     #x - i, y - i for left diagonal traversal
                     game = down_trav(game, n-1-i, ball_cord[1]+j)
@@ -246,7 +248,6 @@ if __name__ == '__main__':
                             game = down_trav(game,n-1-i,ball_cord[1]+j-a)
                             #changing ball co-ord
                             #FIGURED WORKING BALL BASE!!!!!!!!!!! APPLY FOR REST - done
-                            print(temp_ball, ball)
                             if ball_cord[1]+j-a != ball_cord[1]:
                                 if game[n-1][ball_cord[1]+j-a] == '_':
                                     if temp_ball == ball:
@@ -260,7 +261,7 @@ if __name__ == '__main__':
                                         game[n-1][ball_cord[1]] = 'o'
                                         temp_ball = ball
                                 else:
-                                    if temp_ball == ball:
+                                    if temp_ball == ball and '_' in game[n-1]:
                                         game[ball_cord[0]][ball_cord[1]] = '_'
                                     else:
                                         game[ball_cord[0]][ball_cord[1]] = 'G'
@@ -309,7 +310,7 @@ if __name__ == '__main__':
         if win:
             print("HURRAY! You won.")
             break
-        if ball == 0:
+        elif ball == 0:
             print("You lost. :)")
             break
     
