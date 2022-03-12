@@ -1,17 +1,25 @@
 # Ball-Brick Game
 
-
-
-## Description
-
-- Based on the pdf provided, this mini-game was constructed with nested lists in python3. 
-The same logic can be implemented in c++ but python3 seemed simpler. 
+- The mini-game was constructed using Python3. (I chose Python3 over c++ for simplicity)
 - All levels from 1-5 works perfectly and was stress-tested for **odd number sizes of NxN matrix only**. (Even number would make it asymmetric and weird-looking, which we wouldn't want in a game.)
 
-## Note
-- Naturally there could be few bugs around the code which was overlooked, mostly in the RD and LD chain of code which will be the fixed and pushed as and when it is found around the deadline time.
-- While building this standalone application, I did not pay much attention to the time complexity of the code(it is n^3 I believe)
+## Level 1-2-3
 
-![giftest](https://github.com/TejasShripal/ZOHO/blob/main/assets/Animation1.gif)
+![gif1](https://github.com/TejasShripal/ZOHO/blob/main/assets/Animation1.gif)
+
+## Level 4
+
+![gif2](https://github.com/TejasShripal/ZOHO/blob/main/assets/Animation3.gif)
+
+## Level 5
+
+![gif3](https://github.com/TejasShripal/ZOHO/blob/main/assets/Animation2.gif)
+
+## Note:
+- Running the program is simple, just run the "ball_brick.py" with the python3 Interpreter.
+- Time complexity - n^3 (can be optimized)
+- Tested for N = 7/9 or any odd number
+
+
 
 
