@@ -250,7 +250,7 @@ if __name__ == '__main__':
                         if isinstance(game[n-1-i][ball_cord[1]+j-a], int):
                             game = down_trav(game,n-1-i,ball_cord[1]+j-a)
                             #changing ball co-ord
-                            #FIGURED WORKING BALL BASE!!!!!!!!!!! APPLY FOR REST - done
+                            #with ball base
                             if ball_cord[1]+j-a != ball_cord[1]:
                                 if game[n-1][ball_cord[1]+j-a] == '_':
                                     if temp_ball == ball:
