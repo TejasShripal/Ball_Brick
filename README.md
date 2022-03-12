@@ -15,6 +15,10 @@
 
 ![gif3](https://github.com/TejasShripal/ZOHO/blob/main/assets/Animation2.gif)
 
+- Ball base addition:
+
+![gif4](https://github.com/TejasShripal/ZOHO/blob/main/assets/Animation4.gif)
+
 ## Note:
 - Running the program is simple, just run the "ball_brick.py" with the python3 Interpreter.
 - Time complexity - n^3 (can be optimized)
