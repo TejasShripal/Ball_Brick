@@ -1,4 +1,5 @@
 #prepares layout before input
+import os
 def make_game(n):
     game = [[' ' for x in range(n)] for y in range(n)]
     for i in range(n):
@@ -31,6 +32,7 @@ def get_data(n, table):
             break
     ball = int(input("Enter ball count: "))
     game[n-1][int(n/2)] = 'o'
+    os.system('cls')
     return game, ball
 
 def down_trav(game,x,y):
@@ -44,7 +46,7 @@ def down_trav(game,x,y):
     return game
 
 def ds(x,y,game):
-    if game[x][y] != 'W' or game[x][y] != 'G':
+    if game[x][y] != 'W' and game[x][y] != 'G':
         game[x][y] = ' '
     return game
 
@@ -52,7 +54,7 @@ def ds(x,y,game):
 def end_game(game):
     for i in range(1,n-1):
         for j in range(1,n-1):
-            if isinstance(game[i][j], int):
+            if isinstance(game[i][j], int) or game[i][j] == 'B' or game[i][j] == 'S' or game[i][j] == 'E':
                 return False
     return True
 
@@ -155,6 +157,7 @@ if __name__ == '__main__':
                 elif game[n-1-i][ball_cord[1]-j] == 'W':
                     #CHANGING DIRECTION
                     for a in range(1,n):
+                        print(game[n-1-i][ball_cord[1]-j+a])
                         if isinstance(game[n-1-i][ball_cord[1]-j+a], int):
                             game = down_trav(game,n-1-i,ball_cord[1]-j+a)
                             #APPENDING NEW BALL CO-ORDINATES
@@ -192,11 +195,34 @@ if __name__ == '__main__':
                             game = add_base(game)
                             game[n-1-i][ball_cord[1]-j+a] = ' '
                             break
+                    
+                        #DS AND DE BLOCK IMPLEMENTATION FOR LD TRAVERSAL after wall
+                        elif game[n-1-i][ball_cord[1]-j+a] == 'E':
+                            for a in range(1, n-1):
+                                game[n-1-i][a] = ' '
+                            break
+                        elif game[n-1-i][ball_cord[1]-j+a] == 'S':
+                            x = n-1-i
+                            y = ball_cord[1]-j+a
+                            game = ds(x-1,y+1,game)
+                            game = ds(x-1,y,game)
+                            game = ds(x-1,y-1,game)
+                            game = ds(x,y+1,game)
+                            game = ds(x,y,game)
+                            game = ds(x,y-1,game)
+                            game = ds(x+1,y+1,game)
+                            game = ds(x+1,y,game)
+                            game = ds(x+1,y-1,game)
+                            break
+                        elif game[n-1-i][ball_cord[1]-j+a] == 'B':
+                            game = add_base(game)
+                            game[n-1-i][ball_cord[1]-j+a] = ' '
+                            break
                     break
-                #DS AND DE BLOCK IMPLEMENTATION FOR LD TRAVERSAL
+                #DE and DE block 
                 elif game[n-1-i][ball_cord[1]-j] == 'E':
-                    for a in range(1, n-1):
-                        game[n-1-i][a] = ' '
+                    for a in range(1,n-1):
+                        game[n-1-i][ball_cord[1]-j] == ' '
                     break
                 elif game[n-1-i][ball_cord[1]-j] == 'S':
                     x = n-1-i
@@ -284,6 +310,27 @@ if __name__ == '__main__':
                             game = add_base(game)
                             game[n-1-i][ball_cord[1]+j-a] = ' '
                             break
+                        elif game[n-1-i][ball_cord[1]+j-a] == 'E':
+                            for b in range(1, n-1):
+                                game[n-1-i][b] = ' '
+                            break
+                        elif game[n-1-i][ball_cord[1]+j-a] == 'S':
+                            x = n-1-i
+                            y = ball_cord[1]+j-a
+                            game = ds(x-1,y+1,game)
+                            game = ds(x-1,y,game)
+                            game = ds(x-1,y-1,game)
+                            game = ds(x,y+1,game)
+                            game = ds(x,y,game)
+                            game = ds(x,y-1,game)
+                            game = ds(x+1,y+1,game)
+                            game = ds(x+1,y,game)
+                            game = ds(x+1,y-1,game)
+                            break
+                        elif game[n-1-i][ball_cord[1]+j-a] == 'B':
+                            game = add_base(game)
+                            game[n-1-i][ball_cord[1]+j-a] = ' '
+                            break
                     break
                 #RIGHT DIAGONAL DS AND DE IMPLEMENTATION
                 elif game[n-1-i][ball_cord[1]+j] == 'E':
@@ -307,10 +354,7 @@ if __name__ == '__main__':
                     game = add_base(game)
                     game[n-1-i][ball_cord[1]+j] = ' '
                     break
-                elif game[n-1-i][ball_cord[1]+j] == 'B':
-                    game = add_base(game)
-                    game[n-1-i][ball_cord[1]+j] = ' '
-                    break
+        os.system('cls')
         for i in range(n):
             print(*game[i])
         print("Ball count: " + str(ball))
