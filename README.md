@@ -12,4 +12,6 @@ The same logic can be implemented in c++ but python3 seemed simpler.
 - Naturally there could be few bugs around the code which was overlooked, mostly in the RD and LD chain of code which will be the fixed and pushed as and when it is found around the deadline time.
 - While building this standalone application, I did not pay much attention to the time complexity of the code(it is n^3 I believe)
 
+![giftest](https://github.com/TejasShripal/ZOHO/blob/main/assets/Animation1.gif)
+
 
