@@ -19,11 +19,5 @@
 
 ![gif4](https://github.com/TejasShripal/ZOHO/blob/main/assets/Animation4.gif)
 
-## :game_die: Note:
-- Running the program is simple, just run the "ball_brick.py" with the python3 Interpreter.
-- Time complexity - n^3 (can be optimized)
-- Tested for N = 7/9 or any odd number
-
-
 
 
